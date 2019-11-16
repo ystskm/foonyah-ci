@@ -16,8 +16,9 @@ Usage
 -
 
 
-#### runnner
+#### runner
 ```
+// test-suites, root-directory and timeout for each suite
 require('foonyah-ci').run(['basic'], __dirname, 5000 + 100 * 800);
 ```
 
@@ -65,4 +66,4 @@ Change Log
 - 2019/11/15
 
     0.0.1 release
-    # first commit
+    first commit
