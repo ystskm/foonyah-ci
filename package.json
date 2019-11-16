@@ -1,0 +1,29 @@
+{
+  "name": "foonyah-ci",
+  "description": "Node.js test feature",
+  "version": "0.0.1",
+  "explain": "Simplest test framework dedicated by nodeunit",
+  "repository": {
+    "type": "git",
+    "url": "https://ystskm@github.com/ystskm/foonyah-ci.git"
+  },
+  "main": "./index",
+  "engines": {
+    "node": ">=6.11.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "rebuild": [
+  ],
+  "scripts": {
+    "test": "node test/_runner.js"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/ystskm/foonyah/blob/master/LICENSE.txt"
+    }
+  ]
+}
