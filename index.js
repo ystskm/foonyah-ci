@@ -7,6 +7,7 @@
 //  + Startup Cloud Commercial License. 
 // 
 (function() {
+  
   var NULL = null, TRUE = true, FALSE = false, UNDEF = undefined;
   var g = global, fs = require('fs');
   foonyahCI.run = CI_run;
@@ -25,6 +26,7 @@
     ok: T_ok,
     eq: T_eq,
     equals: T_eq,
+    deepEquals: T_same,
     same: T_same,
     expect: T_expect,
     done: T_done,
@@ -40,26 +42,36 @@
     ci.cwd_org = process.cwd();
     process.chdir(ci.cwd = directory);
     ci.proc = Promise.resolve();
-    filenames.forEach(fp=>{
+    [ ].concat(filenames).forEach(fp=>{
       ci.proc = ci.proc.then(sw=>{
         
         outLog('foonyahCI require: ' + fp, ci.cwd);
-        var racer = [ ];
-        racer.push(new Promise( (rsl, rej)=>{
-          ci.timer = setTimeout(()=>{ ci.timeoutError(); rej('timeoutError') }, timeout = timeout || 10000);
+        var racers = [ ];
+        racers.push(new Promise( (rsl, rej)=>{
+          timeout = timeout || 10000;
+          ci.timer = setTimeout(()=>{ ci.timeoutError(); rej('timeout (' + timeout + 'ms)') }, timeout = timeout || 10000);
         }) );
-        racer.push( (async function() {
+        racers.push( (async function() {
           await require(ci.cwd + '/' + fp + '.js'); // function testCase is called and the return have to be a promise.
         })() );
-        return Promise.race(racer);
+        return Promise.race(racers);
         
       }).then(sw=>{
         if(ci.timer != NULL) clearTimeout(ci.timer);
-        if(sw && sw.error.length !== 0) throw 'E'; // => Immediately fail summary and finish test.
+        if(sw && sw.error.length !== 0) throw 'Error suite: ' + sw.fileName; // => Immediately fail summary and finish test.
       })['catch'](e=>{
         if(ci.timer != NULL) clearTimeout(ci.timer);
         throw e;
       });
+    });
+    ci.proc['catch'](e=>{
+      outLog('Terminated reason?', e);
+    }).then(()=>{
+      
+      process.chdir(ci.cwd_org);
+      process.exit();
+      // => force exit if any handler remains
+      
     });
     
   }
@@ -87,7 +99,7 @@
         }).then(()=>{
           console.log('[done] test "' + testName + '".');
         })['catch'](e=>{
-          console.log('[fail] test "' + testName + '".');
+          console.log('[fail] test "' + testName + '".', e);
           // throw e;
         });
       });

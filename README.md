@@ -1,7 +1,7 @@
 foonyah-ci
 -
 
-#### Simplest test framework dedicated by nodeunit
+#### Simplest test framework dedicated to nodeunit
 Nodeunit (https://github.com/caolan/nodeunit#nodeunit) is very simple and worth architecture for test but 
 it has already been a DEPRECATED PROJECT. That is why I made foonyah-ci.
 
@@ -51,8 +51,10 @@ API
 #### t.ok(j, msg)
 
 #### t.eq(actual, expected, msg)
+- alias: t.equals
 
 #### t.same(actual, expected, msg)
+- alias: t.deepEquals
 
 #### t.expect(n, msg)
 
@@ -63,7 +65,7 @@ API
 Change Log
 -
 
-- 2019/11/15
+- 2019/11/16
 
-    0.0.1 release
+    0.0.2 release
     first commit

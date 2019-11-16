@@ -2,7 +2,7 @@
   "name": "foonyah-ci",
   "description": "Node.js test feature",
   "version": "0.0.1",
-  "explain": "Simplest test framework dedicated by nodeunit",
+  "explain": "Simplest test framework dedicated to nodeunit",
   "repository": {
     "type": "git",
     "url": "https://ystskm@github.com/ystskm/foonyah-ci.git"
