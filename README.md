@@ -1,8 +1,8 @@
 # foonyah-ci
 
-[![Rank](https://nodei.co/npm/log-life.png?downloads=true&amp;downloadRank=true&amp;stars=true)](https://nodei.co/npm/log-life/)  
-[![Version](https://badge.fury.io/js/log-life.png)](https://npmjs.org/package/log-life)
-[![Build status](https://travis-ci.org/ystskm/node-log-life.png)](https://travis-ci.org/ystskm/node-log-life)  
+[![Rank](https://nodei.co/npm/foonyah-ci.png?downloads=true&amp;downloadRank=true&amp;stars=true)](https://nodei.co/npm/foonyah-ci/)  
+[![Version](https://badge.fury.io/js/foonyah-ci.png)](https://npmjs.org/package/foonyah-ci)
+[![Build status](https://travis-ci.org/ystskm/foonyah-ci.png)](https://travis-ci.org/ystskm/foonyah-ci)  
 
 #### Simplest test framework dedicated to nodeunit
 Nodeunit (https://github.com/caolan/nodeunit#nodeunit) is very simple and worth architecture for test but 
