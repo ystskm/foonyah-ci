@@ -14,6 +14,7 @@
   "dependencies": {
   },
   "devDependencies": {
+    "foonyah-ci": "*"
   },
   "rebuild": [
   ],
