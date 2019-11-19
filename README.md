@@ -20,31 +20,39 @@ To install the most recent release from npm, run:
 #### runner
 ```
 // test-suites, root-directory and timeout for each suite
-require('foonyah-ci').run(['basic'], __dirname, 5000 + 100 * 800);
+require('foonyah-ci').run(['basic'], __dirname, 5000);
 ```
 
 
 #### executor (e.g. basic.js)
 ```
-var ci = require('foonyah-ci');
-module.exports = ci.testCase({
-  '_': function(t) {
+module.exports = require('foonyah-ci').testCase({
+  'README': function(t) {
 
-    db = new Mongodb( [env.host, env.port].join(':') );
-
-    db.drop(env.databaseName, function(er, r) {
-      console.log('drop:', arguments);
-      if(er)
-        console.warn('Drop error. Already dropped?');
-      console.log(er, r);
-      t.ok(true, 'Initializing Successfully.');
-      t.done();
-    });
+    t.ok(true, 'start test');
+    setTimeout(()=>{ t.equals(1, 1, 'async ok'); t.done(); }, 3000);
 
   }
-})
+}, 'basic.js');
 ```
 
+#### the result example
+```console
+$ npm test
+
+> foonyah-ci@0.1.0 test /root/foonyah-ci
+> node test/_runner.js
+
+Tue, 19 Nov 2019 14:27:52 GMT - [foonyah-ci] foonyahCI require: basic /root/foonyah-ci/test
+Tue, 19 Nov 2019 14:27:52 GMT - [foonyah-ci:foonyahSuite] foonyahSuite execute: README@basic.js
+[done] test "README".
+  [    0][  0.001][ok] start test
+  [    1][  3.007][equals] async ok
+--------------------------
+ [basic.js] Summary on Node:v12.13.0, Arch:x64
+ Tue, 19 Nov 2019 14:27:55 GMT - basic.js (3007ms, 100% [2/2], fail=0 perfect!)
+--------------------------
+```
   
 ## API
 
